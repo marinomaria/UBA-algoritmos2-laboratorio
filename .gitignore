@@ -1,0 +1,8 @@
+CMakeCache.txt
+CMakeFiles/*
+cmake_install.cmake
+correrTests
+*.o
+*.a
+*.obj
+*.exe
