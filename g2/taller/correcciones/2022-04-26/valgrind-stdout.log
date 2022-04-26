@@ -1,0 +1,28 @@
+Running main() from gtest_main.cc
+Note: Google Test filter = *-Lista.Stress*
+[==========] Running 9 tests from 1 test case.
+[----------] Global test environment set-up.
+[----------] 9 tests from lista_test
+[ RUN      ] lista_test.test_constructor_vacio
+[       OK ] lista_test.test_constructor_vacio (7 ms)
+[ RUN      ] lista_test.test_agregar_un_elemento_adelante
+[       OK ] lista_test.test_agregar_un_elemento_adelante (2 ms)
+[ RUN      ] lista_test.test_agregar_un_elemento_atras
+[       OK ] lista_test.test_agregar_un_elemento_atras (2 ms)
+[ RUN      ] lista_test.test_agregar_varios_elementos_solo_adelante
+[       OK ] lista_test.test_agregar_varios_elementos_solo_adelante (3 ms)
+[ RUN      ] lista_test.test_agregar_varios_elementos_solo_atras
+[       OK ] lista_test.test_agregar_varios_elementos_solo_atras (4 ms)
+[ RUN      ] lista_test.test_agregar_varios_elementos_adelante_y_atras
+[       OK ] lista_test.test_agregar_varios_elementos_adelante_y_atras (4 ms)
+[ RUN      ] lista_test.test_eliminar_elementos
+[       OK ] lista_test.test_eliminar_elementos (5 ms)
+[ RUN      ] lista_test.test_constructor_por_copia
+[       OK ] lista_test.test_constructor_por_copia (5 ms)
+[ RUN      ] lista_test.test_operador_asignacion
+[       OK ] lista_test.test_operador_asignacion (5 ms)
+[----------] 9 tests from lista_test (45 ms total)
+
+[----------] Global test environment tear-down
+[==========] 9 tests from 1 test case ran. (74 ms total)
+[  PASSED  ] 9 tests.

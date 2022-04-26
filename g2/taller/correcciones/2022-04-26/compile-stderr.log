@@ -1,0 +1,17 @@
+In file included from ./Lista.h:105:0,
+                 from ../../../../../../taller2/lista_tests.cpp:2:
+./Lista.hpp: In member function ‘void Lista::eliminar(Nat)’:
+./Lista.hpp:75:32: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+     while (tmp != nullptr && j < i) {
+                              ~~^~~
+./Lista.hpp:84:16: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+     else if (i == _longitud - 1) {
+              ~~^~~~~~~~~~~~~~~~
+./Lista.hpp: In member function ‘const int& Lista::iesimo(Nat) const’:
+./Lista.hpp:104:32: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+     while (tmp != nullptr && j < i) {
+                              ~~^~~
+./Lista.hpp: In member function ‘int& Lista::iesimo(Nat)’:
+./Lista.hpp:115:32: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+     while (tmp != nullptr && j < i) {
+                              ~~^~~
