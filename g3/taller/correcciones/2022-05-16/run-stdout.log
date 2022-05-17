@@ -1,0 +1,33 @@
+Running main() from gtest_main.cc
+[==========] Running 12 tests from 1 test case.
+[----------] Global test environment set-up.
+[----------] 12 tests from conjunto_test
+[ RUN      ] conjunto_test.conjunto_vacio
+[       OK ] conjunto_test.conjunto_vacio (0 ms)
+[ RUN      ] conjunto_test.test_insertar_un_valor
+[       OK ] conjunto_test.test_insertar_un_valor (0 ms)
+[ RUN      ] conjunto_test.test_insertar_cinco_valores
+[       OK ] conjunto_test.test_insertar_cinco_valores (0 ms)
+[ RUN      ] conjunto_test.test_pertenece
+[       OK ] conjunto_test.test_pertenece (0 ms)
+[ RUN      ] conjunto_test.test_insertar_remover_un_valor
+[       OK ] conjunto_test.test_insertar_remover_un_valor (0 ms)
+[ RUN      ] conjunto_test.test_minimo
+[       OK ] conjunto_test.test_minimo (0 ms)
+[ RUN      ] conjunto_test.test_maximo
+[       OK ] conjunto_test.test_maximo (0 ms)
+[ RUN      ] conjunto_test.test_remover_caso_un_hijo
+[       OK ] conjunto_test.test_remover_caso_un_hijo (0 ms)
+[ RUN      ] conjunto_test.test_remover_caso_dos_hijos_simple
+[       OK ] conjunto_test.test_remover_caso_dos_hijos_simple (0 ms)
+[ RUN      ] conjunto_test.test_remover_caso_dos_hijos_doble
+[       OK ] conjunto_test.test_remover_caso_dos_hijos_doble (0 ms)
+[ RUN      ] conjunto_test.test_siguiente_inorder
+[       OK ] conjunto_test.test_siguiente_inorder (0 ms)
+[ RUN      ] conjunto_test.test_stress
+[       OK ] conjunto_test.test_stress (34 ms)
+[----------] 12 tests from conjunto_test (34 ms total)
+
+[----------] Global test environment tear-down
+[==========] 12 tests from 1 test case ran. (34 ms total)
+[  PASSED  ] 12 tests.
