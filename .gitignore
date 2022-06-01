@@ -7,3 +7,4 @@ correrTests
 *.a
 *.obj
 *.exe
+.idea
