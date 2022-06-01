@@ -8,3 +8,4 @@ correrTests
 *.obj
 *.exe
 .idea
+cmake-build-debug/
