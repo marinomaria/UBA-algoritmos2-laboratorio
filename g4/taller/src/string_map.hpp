@@ -119,7 +119,7 @@ void string_map<T>::erase(const string& clave) {
     unsigned int j = 0;
     // Busco el último nodo útil
     for (int i = 0; i < clave.size(); i++) {
-        if (std::count(n->siguientes.cbegin(), n->siguientes.cend(), nullptr) < 255 || n->definicion != nullptr) {
+        if (std::count(n->siguientes.cbegin(), n->siguientes.cend(), nullptr) < 255 || n->definicion != nullptr || (i == clave.size() - 1 && std::count(n->siguientes.cbegin(), n->siguientes.cend(), nullptr) == 255)) {
             u = n;
             j = i;
         }
@@ -128,10 +128,11 @@ void string_map<T>::erase(const string& clave) {
     }
 
     if (u != n && std::count(n->siguientes.cbegin(), n->siguientes.cend(), nullptr) == 256) {
-        _destroy(u->siguientes[j]);
-        u->siguientes[j] = nullptr;
+        _destroy(u->siguientes[int(clave[j])]);
+        u->siguientes[int(clave[j])] = nullptr;
     } else {
         delete n->definicion;
+        n->definicion = nullptr;
     }
 
     _size--;
