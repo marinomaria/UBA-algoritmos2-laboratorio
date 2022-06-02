@@ -93,6 +93,8 @@ private:
     int _size;
 
     void _destroy(Nodo* n);
+
+    void copiaRecursiva(Nodo*& n, Nodo* m);
 };
 
 #include "string_map.hpp"

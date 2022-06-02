@@ -8,14 +8,24 @@ template <typename T>
 string_map<T>& string_map<T>::operator=(const string_map<T>& d) {
     _destroy(raiz);
 
-    raiz = d.raiz;
+    copiaRecursiva(raiz, d.raiz);
     _size = d.size();
     return *this;
 }
 
+template<typename T>
+void string_map<T>::copiaRecursiva(Nodo*& destiny, Nodo* source) {
+    if (source != nullptr) {
+        destiny = new Nodo(source->definicion);
+        for (int i = 0; i < 256; i++) {
+            copiaRecursiva(destiny->siguientes[i], source->siguientes[i]);
+        }
+    }
+}
+
 template <typename T>
 string_map<T>::~string_map(){
-    //_destroy(raiz);
+    _destroy(raiz);
 }
 
 template <typename T>
@@ -23,7 +33,6 @@ void string_map<T>::_destroy(Nodo* n){
     if (n != nullptr) {
         for (int i = 0; i < 256; i++) {
             _destroy(n->siguientes[i]);
-            n->siguientes[i] = nullptr;
         }
         delete n;
     }
