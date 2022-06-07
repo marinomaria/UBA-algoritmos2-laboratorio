@@ -1,0 +1,36 @@
+In file included from ./string_map.h:100:0,
+                 from ../../../../../../taller4/string_map_tests.cpp:2:
+./string_map.hpp: In instantiation of ‘int string_map<T>::count(const string&) const [with T = int; std::__cxx11::string = std::__cxx11::basic_string<char>]’:
+../../../../../../taller4/string_map_tests.cpp:8:5:   required from here
+./string_map.hpp:77:27: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+         for (int i = 0; i < clave.size(); i++) {
+                         ~~^~~~~~~~~~~~~~
+./string_map.hpp:82:23: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+                 if (i == clave.size() - 1 && (n->siguientes[c])->definicion != nullptr) {
+                     ~~^~~~~~~~~~~~~~~~~~~
+./string_map.hpp: In instantiation of ‘void string_map<T>::insert(const std::pair<std::__cxx11::basic_string<char>, T>&) [with T = int]’:
+../../../../../../taller4/string_map_tests.cpp:13:42:   required from here
+./string_map.hpp:52:23: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+     for (int i = 0; i < p.first.size(); i++) {
+./string_map.hpp:60:15: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+         if (i == p.first.size() - 1) {
+             ~~^~~~~~~~~~~~~~~~~~~~~
+./string_map.hpp: In instantiation of ‘void string_map<T>::insert(const std::pair<std::__cxx11::basic_string<char>, T>&) [with T = string_map<int>]’:
+../../../../../../taller4/string_map_tests.cpp:153:48:   required from here
+./string_map.hpp:52:23: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+     for (int i = 0; i < p.first.size(); i++) {
+./string_map.hpp:60:15: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+         if (i == p.first.size() - 1) {
+             ~~^~~~~~~~~~~~~~~~~~~~~
+./string_map.hpp: In instantiation of ‘void string_map<T>::erase(const string&) [with T = int; std::__cxx11::string = std::__cxx11::basic_string<char>]’:
+../../../../../../taller4/string_map_tests.cpp:178:27:   required from here
+./string_map.hpp:121:23: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+     for (int i = 0; i < clave.size(); i++) {
+                     ~~^~~~~~~~~~~~~~
+./string_map.hpp:122:119: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+         if (std::count(n->siguientes.cbegin(), n->siguientes.cend(), nullptr) < 255 || n->definicion != nullptr || (i == clave.size() - 1 && std::count(n->siguientes.cbegin(), n->siguientes.cend(), nullptr) == 255)) {
+                                                                                                                     ~~^~~~~~~~~~~~~~~~~~~
+./string_map.hpp: In member function ‘int string_map<T>::count(const string&) const [with T = int]’:
+./string_map.hpp:93:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^

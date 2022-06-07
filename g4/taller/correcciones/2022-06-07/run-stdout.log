@@ -1,0 +1,28 @@
+[==========] Running 10 tests from 1 test case.
+[----------] Global test environment set-up.
+[----------] 10 tests from string_map_test
+[ RUN      ] string_map_test.vacio
+[       OK ] string_map_test.vacio (0 ms)
+[ RUN      ] string_map_test.asignar
+[       OK ] string_map_test.asignar (0 ms)
+[ RUN      ] string_map_test.obtener
+[       OK ] string_map_test.obtener (0 ms)
+[ RUN      ] string_map_test.redefinir
+[       OK ] string_map_test.redefinir (0 ms)
+[ RUN      ] string_map_test.count
+[       OK ] string_map_test.count (0 ms)
+[ RUN      ] string_map_test.copiar
+[       OK ] string_map_test.copiar (0 ms)
+[ RUN      ] string_map_test.no_aliasing
+[       OK ] string_map_test.no_aliasing (0 ms)
+[ RUN      ] string_map_test.TrieDeTries
+[       OK ] string_map_test.TrieDeTries (1 ms)
+[ RUN      ] string_map_test.eraseUnicaClave
+[       OK ] string_map_test.eraseUnicaClave (0 ms)
+[ RUN      ] string_map_test.erase
+[       OK ] string_map_test.erase (0 ms)
+[----------] 10 tests from string_map_test (1 ms total)
+
+[----------] Global test environment tear-down
+[==========] 10 tests from 1 test case ran. (1 ms total)
+[  PASSED  ] 10 tests.
