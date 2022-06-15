@@ -34,7 +34,7 @@ public:
     INSERT 
     * Inserta un par clave, valor en el diccionario
     **/
-    void insert(const pair<string, T> &p);
+    void insert(const pair<string, T>&);
 
     /**
     COUNT
@@ -80,21 +80,37 @@ public:
 
 private:
 
-    struct Nodo{
+    struct Nodo {
         vector<Nodo*> siguientes;
         T* definicion;
-        Nodo() : siguientes(256, nullptr),
-                 definicion(nullptr) {}
-        Nodo(T* def) : siguientes(256, nullptr),
-                       definicion(def) {}
+        Nodo(): siguientes(256, nullptr), definicion{nullptr} {}
+        Nodo(const T& d): siguientes(256, nullptr), definicion{new T(d)} {}
+        Nodo(const Nodo& n): siguientes(256, nullptr), definicion{n.definicion ? new T(*n.definicion) : nullptr} {
+            for (int i = 0; i < 256; i++) {
+                if (n.siguientes[i]) {
+                    siguientes[i] = new Nodo(*n.siguientes[i]);
+                }
+            }
+        }
+        ~Nodo() {
+            delete definicion;
+            for (int i = 0; i < 256; i++) {
+                delete siguientes[i];
+            }
+        }
+        unsigned int hijos() {
+            unsigned int res = 0;
+            for (int i = 0; i < 256; i++) {
+                if (siguientes[i]) {
+                    res++;
+                }
+            }
+            return res;
+        }
     };
 
-    Nodo* raiz;
+    Nodo* _raiz;
     int _size;
-
-    void _destroy(Nodo* n);
-
-    void copiaRecursiva(Nodo*& n, Nodo* m);
 };
 
 #include "string_map.hpp"

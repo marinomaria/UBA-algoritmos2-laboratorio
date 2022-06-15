@@ -1,92 +1,69 @@
 template <typename T>
-string_map<T>::string_map() : raiz(nullptr), _size(0) {}
+string_map<T>::string_map(): _raiz{new Nodo()}, _size{0} {}
 
 template <typename T>
 string_map<T>::string_map(const string_map<T>& aCopiar) : string_map() { *this = aCopiar; } // Provisto por la catedra: utiliza el operador asignacion para realizar la copia.
 
 template <typename T>
 string_map<T>& string_map<T>::operator=(const string_map<T>& d) {
-    _destroy(raiz);
-
-    copiaRecursiva(raiz, d.raiz);
-    _size = d.size();
+    delete _raiz;
+    _size = d._size;
+    _raiz = new Nodo(*d._raiz);
     return *this;
-}
-
-template<typename T>
-void string_map<T>::copiaRecursiva(Nodo*& destiny, Nodo* source) {
-    if (source != nullptr) {
-        destiny = new Nodo(source->definicion);
-        for (int i = 0; i < 256; i++) {
-            copiaRecursiva(destiny->siguientes[i], source->siguientes[i]);
-        }
-    }
 }
 
 template <typename T>
 string_map<T>::~string_map(){
-    _destroy(raiz);
+    delete _raiz;
 }
 
-template <typename T>
-void string_map<T>::_destroy(Nodo* n){
-    if (n != nullptr) {
-        for (int i = 0; i < 256; i++) {
-            _destroy(n->siguientes[i]);
-        }
-        delete n;
-    }
-}
-
-template <typename T>
-T& string_map<T>::operator[](const string& clave){
-    // COMPLETAR
-}
 
 template <typename T>
 void string_map<T>::insert(const pair<string, T>& p) {
-    if (raiz == nullptr) {
-        raiz = new Nodo();
-    }
-    Nodo* n = raiz;
-    for (int i = 0; i < p.first.size(); i++) {
-        // c es la rep numérica del iésimo caracter de la clave
-        unsigned int c = int(p.first[i]);
-
-        if (n->siguientes[c] == nullptr) {
+    Nodo* n = _raiz;
+    for (const char& c: p.first) {
+        if (!n->siguientes[c]) {
             n->siguientes[c] = new Nodo();
         }
-
-        if (i == p.first.size() - 1) {
-            // Si ya hay una definición borro el puntero y libero la memoria
-            if (n->siguientes[c]->definicion != nullptr) {
-                delete n->siguientes[c]->definicion;
-            }
-            n->siguientes[c]->definicion = new T(p.second);
-        }
-
         n = n->siguientes[c];
     }
+    delete n->definicion;
+    n->definicion = new T(p.second);
     _size++;
 }
 
 template <typename T>
-int string_map<T>::count(const string& clave) const{
-    if (raiz != nullptr) {
-        Nodo* n = raiz;
-        for (int i = 0; i < clave.size(); i++) {
-            // c es la rep numérica del iésimo caracter de la clave
-            unsigned int c = int(clave[i]);
-
-            if (n->siguientes[c] != nullptr) {
-                if (i == clave.size() - 1 && (n->siguientes[c])->definicion != nullptr) {
-                    return 1;
-                }
-                n = n->siguientes[c];
-            } else {
-                return 0;
-            }
+T& string_map<T>::operator[](const string& clave){
+    bool nueva = false;
+    Nodo* n = _raiz;
+    for (const char& c: clave) {
+        if (n->siguientes[c]) {
+            n = n->siguientes[c];
+        } else {
+            n->siguientes[c] = new Nodo();
+            n = n->siguientes[c];
+            nueva = true;
         }
+    }
+    if (nueva) {
+        _size++;
+    }
+    return *n->definicion;
+}
+
+
+template <typename T>
+int string_map<T>::count(const string& clave) const{
+    Nodo* n = _raiz;
+    for (const char& c: clave) {
+        if (n->siguientes[c]) {
+            n = n->siguientes[c];
+        } else {
+            return 0;
+        }
+    }
+    if (n->definicion) {
+        return 1;
     } else {
         return 0;
     }
@@ -94,47 +71,41 @@ int string_map<T>::count(const string& clave) const{
 
 template <typename T>
 const T& string_map<T>::at(const string& clave) const {
-    Nodo* n = raiz;
-    for (char const &c : clave) {
-        n = n->siguientes[int(c)];
+    Nodo* n = _raiz;
+    for (const char& c: clave) {
+        n = n->siguientes[c];
     }
-
-    return *(n->definicion);
+    return *n->definicion;
 }
 
 template <typename T>
 T& string_map<T>::at(const string& clave) {
-    Nodo* n = raiz;
-    for (char const &c : clave) {
-        n = n->siguientes[int(c)];
+    Nodo* n = _raiz;
+    for (const char& c: clave) {
+        n = n->siguientes[c];
     }
-
-    return *(n->definicion);
+    return *n->definicion;
 }
 
 template <typename T>
 void string_map<T>::erase(const string& clave) {
-    Nodo* u = raiz;
-    Nodo* n = raiz;
-    unsigned int j = 0;
-    // Busco el último nodo útil
+    Nodo* n = _raiz;
+    Nodo* ultn = _raiz;
+    int ulti = 0;
     for (int i = 0; i < clave.size(); i++) {
-        if (std::count(n->siguientes.cbegin(), n->siguientes.cend(), nullptr) < 255 || n->definicion != nullptr || (i == clave.size() - 1 && std::count(n->siguientes.cbegin(), n->siguientes.cend(), nullptr) == 255)) {
-            u = n;
-            j = i;
+        if (n->definicion || n->hijos() > 1) {
+            ultn = n;
+            ulti = i;
         }
-
-        n = n->siguientes[int(clave[i])];
+        n = n->siguientes[clave[i]];
     }
-
-    if (u != n && std::count(n->siguientes.cbegin(), n->siguientes.cend(), nullptr) == 256) {
-        _destroy(u->siguientes[int(clave[j])]);
-        u->siguientes[int(clave[j])] = nullptr;
+    if (ultn->siguientes[clave[ulti]] != n) {
+        delete ultn->siguientes[clave[ulti]];
+        ultn->siguientes[clave[ulti]] = nullptr;
     } else {
         delete n->definicion;
         n->definicion = nullptr;
     }
-
     _size--;
 }
 
@@ -145,5 +116,5 @@ int string_map<T>::size() const{
 
 template <typename T>
 bool string_map<T>::empty() const{
-    return (_size == 0);
+    return _size == 0;
 }
