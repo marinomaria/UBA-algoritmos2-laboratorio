@@ -1,0 +1,7 @@
+In file included from ./string_map.h:116:0,
+                 from ../../../../../../taller4/string_map_tests.cpp:2:
+./string_map.hpp: In instantiation of ‘void string_map<T>::erase(const string&) [with T = int; std::__cxx11::string = std::__cxx11::basic_string<char>]’:
+../../../../../../taller4/string_map_tests.cpp:178:27:   required from here
+./string_map.hpp:95:23: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+     for (int i = 0; i < clave.size(); i++) {
+                     ~~^~~~~~~~~~~~~~
